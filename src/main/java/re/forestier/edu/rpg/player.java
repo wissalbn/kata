@@ -73,6 +73,10 @@ public class player {
         return this.xp;
     }
 
+    public void setXp(int xp) {
+    this.xp = xp;
+    }
+
     /*
     Ингредиенты:
         Для теста:

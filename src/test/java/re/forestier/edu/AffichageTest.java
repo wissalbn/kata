@@ -33,17 +33,12 @@ public class AffichageTest {
     @Test
     void forceClassLoadingCoverage() throws Exception {
         try {
-            // Obtient le constructeur par défaut (qui est public par défaut pour JaCoCo).
             Constructor<re.forestier.edu.rpg.Affichage> constructor = re.forestier.edu.rpg.Affichage.class.getDeclaredConstructor();
             
-            // Le rend accessible (nécessaire pour appeler des constructeurs non publics, même si celui-ci est implicitement public ici).
             constructor.setAccessible(true);
             
-            // Appelle le constructeur implicite. Ceci couvre la ligne "public class Affichage".
             constructor.newInstance();
         } catch (Exception e) {
-            // Si une erreur se produit (par exemple, NoSuchMethod), le test échoue.
-            // Cependant, le but ici est d'exécuter le constructeur.
             fail("Le chargement de la classe Affichage a échoué via la réflexion: " + e.getMessage());
         }
     }

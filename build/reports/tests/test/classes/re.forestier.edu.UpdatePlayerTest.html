@@ -3,17 +3,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta http-equiv="x-ua-compatible" content="IE=edge"/>
-<title>Test results - PlayerTest</title>
+<title>Test results - UpdatePlayerTest</title>
 <link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
 <link href="../css/style.css" rel="stylesheet" type="text/css"/>
 <script src="../js/report.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="content">
-<h1>PlayerTest</h1>
+<h1>UpdatePlayerTest</h1>
 <div class="breadcrumbs">
 <a href="../index.html">all</a> &gt; 
-<a href="../packages/re.forestier.edu.html">re.forestier.edu</a> &gt; PlayerTest</div>
+<a href="../packages/re.forestier.edu.html">re.forestier.edu</a> &gt; UpdatePlayerTest</div>
 <div id="summary">
 <table>
 <tr>
@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">13</div>
+<div class="counter">14</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.027s</div>
+<div class="counter">0.081s</div>
 <p>duration</p>
 </div>
 </td>
@@ -63,6 +63,9 @@
 <li>
 <a href="#tab0">Tests</a>
 </li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
 </ul>
 <div id="tab0" class="tab">
 <h2>Tests</h2>
@@ -75,71 +78,83 @@
 </tr>
 </thead>
 <tr>
-<td class="success">addMoneyValid()</td>
-<td class="success">0.001s</td>
+<td class="success">addXp_shouldLevelUpWhenXpIsSufficient()</td>
+<td class="success">0.004s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">constructorInvalid()</td>
-<td class="success">0.002s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">constructorValidArcher()</td>
-<td class="success">0.001s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">constructorValidDwarf()</td>
-<td class="success">0.006s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">construtorValidAdventurer()</td>
+<td class="success">addXp_shouldntLevelUpWhenXpIsInsufficient()</td>
 <td class="success">0.003s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">getXPValid()</td>
+<td class="success">forceClassLoadingCoverage()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">majFinDeTour_FinalCapCheck_DwarfOverflowsHP()</td>
 <td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">removeMoneyThrowsError()</td>
-<td class="success">0.004s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">removeMoneyValid()</td>
+<td class="success">majFinDeTour_HealingForAdventurerBeLowHalfHpForLevel3OrHigher()</td>
 <td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">retrieveLevel_1_whenXPis9()</td>
+<td class="success">majFinDeTour_HealingForAdventurerBeLowHalfHpForLevelLowerThan3()</td>
 <td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">retrieveLevel_2_whenXPis10()</td>
-<td class="success">0.004s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">retrieveLevel_3_whenXPis27()</td>
+<td class="success">majFinDeTour_HealingForArcherBeLowHalfHp()</td>
 <td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">retrieveLevel_4_whenXPis57()</td>
+<td class="success">majFinDeTour_HealingForArcherBeLowHalfHpMagicBow()</td>
 <td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">retrieveLevel_5_whenXPis111()</td>
+<td class="success">majFinDeTour_HealingForDwarfBeLowHalfHp()</td>
+<td class="success">0.058s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">majFinDeTour_HealingForDwarfBeLowHalfHpHolyElixir()</td>
 <td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">majFinDeTour_HealingShouldNotExceedMaxHp()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">majFinDeTour_HealingWhenHpAboveHalf()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">majFinDeTour_HealingWhenHpAtMax()</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">majFinDeTour_shouldDoNothingWhenPlayerIsKO()</td>
+<td class="success">0.006s</td>
 <td class="success">passed</td>
 </tr>
 </table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>Le joueur est KO !
+</pre>
+</span>
 </div>
 </div>
 <div id="footer">

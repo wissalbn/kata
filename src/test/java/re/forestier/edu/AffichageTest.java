@@ -42,4 +42,19 @@ public class AffichageTest {
             fail("Le chargement de la classe Affichage a échoué via la réflexion: " + e.getMessage());
         }
     }
+
+    @Test
+    void pit_Affichage_KillsForEachMutant() {
+        //ARRANGE
+        player player = new player("KillLoop", "Fighter", "ARCHER", 10, new ArrayList<>());
+
+        //ACT
+        String affichage = re.forestier.edu.rpg.Affichage.afficherJoueur(player);
+
+        //ASSERT
+        
+        //Le code d'UpdatePlayer.abilitiesPerTypeAndLevel() montre que l'ARCHER niveau 1 a ATK: 3.
+        //Cette assertion vérifie que la boucle FOR EACH a bien ajouté l'entree ATK.
+        assertTrue(affichage.contains("ATK : 3"), "L'affichage doit contenir l'entrée de capacité ATK : 3.");
+    }
 }

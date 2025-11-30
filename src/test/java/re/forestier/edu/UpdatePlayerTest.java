@@ -251,5 +251,44 @@ public class UpdatePlayerTest {
         assertEquals(100,player.currenthealthpoints, "Les points de vie du joueur ne devraient pas dépasser le maximum.");
     }
 
+    //pitest
+    @Test
+    void pit_majFinDeTour_AdventurerLevel3KillsMutant() {
+        //ARRANGE
+        player player = new player("MutantSlayer", "Adventurer", "ADVENTURER", 0, new ArrayList<>());
+
+        //SETUP
+        player.setXp(27); 
+        player.healthpoints = 100;
+        player.currenthealthpoints = 20; 
+        int oldHp = player.currenthealthpoints;
+
+        // ACT
+        UpdatePlayer.majFinDeTour(player);
+
+        //ASSERT
+        assertEquals(oldHp + 2, player.currenthealthpoints, "Le Niveau 3 ne doit pas activer le malus de -1 PV. (Tue le mutant '<=').");
+    }
+
+    @Test
+    void pit_addXp_addInventoryKillMutant(){
+        //arrange
+        player player = new player("MutantSlayer", "Adventurer", "ADVENTURER", 0, new ArrayList<>());
+
+        //setup
+        player.setXp(27); 
+        int oldInventorySize = player.inventory.size();
+
+        //act
+        UpdatePlayer.addXp(player, 30);
+
+        //assert
+        assertEquals(oldInventorySize + 1, player.inventory.size(), "L'inventaire doit augmenter de 1 en tuant le mutant.");
+    }
+    //Pour ce code ↑ le résultat de A - 0 est toujours le même que A + 0. Le code modifié est logiquement identique à l'original
+    // donc aucun test ne peut le tuer.
+
+
+
         
 }

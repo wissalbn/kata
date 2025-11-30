@@ -119,20 +119,20 @@ public class PlayerTest {
 
     @Test
     void constructorValidArcher(){
-    //Arrange
-    player player = new player("Test","Tester","ARCHER",200,new ArrayList<>());
+        //Arrange
+        player player = new player("Test","Tester","ARCHER",200,new ArrayList<>());
 
-    //Assert 
-    assertEquals("ARCHER", player.getAvatarClass()); 
+        //Assert 
+        assertEquals("ARCHER", player.getAvatarClass()); 
     }
 
     @Test
     void constructorValidDwarf(){
-    //Arrange
-    player player = new player("Test","tester","DWARF",200,new ArrayList<>());
+        //Arrange
+        player player = new player("Test","tester","DWARF",200,new ArrayList<>());
 
-    //Assert 
-    assertEquals("DWARF", player.getAvatarClass());
+        //Assert 
+        assertEquals("DWARF", player.getAvatarClass());
     }
 
     @Test
@@ -149,13 +149,13 @@ public class PlayerTest {
 
     @Test
     void removeMoneyThrowsError(){
-    //Arrange
-    player player = new player("Test","tester","ADVENTURER",50,new ArrayList<>());
+        //Arrange
+        player player = new player("Test","tester","ADVENTURER",50,new ArrayList<>());
 
-    //Assert
-    assertThrows(IllegalArgumentException.class, ()->{
-        player.removeMoney(100);
-    });
+        //Assert
+        assertThrows(IllegalArgumentException.class, ()->{
+            player.removeMoney(100);
+        });
     }
 
    @Test
@@ -182,6 +182,23 @@ public class PlayerTest {
 
         //Assert
         assertEquals(400, player.money);
+    }
+
+    @Test
+    void pit_removeMoney_KillsBoundaryMutant() {
+        //ARRANGE
+        player player = new player("KillLimit", "Slayer", "ARCHER", 50, new ArrayList<>());
+        
+        //SETUP
+        final int montantInitial = 50;
+        final int montantARetirer = 50; // Retirer tout l'argent disponible
+        
+        //ACT
+        player.removeMoney(montantARetirer); 
+
+        //ASSERT
+        //conffirmer que le résultat est 0. 
+        assertEquals(montantInitial - montantARetirer, player.money, "Le joueur doit pouvoir retirer son dernier montant, laissant 0. (Tue le mutant '<= 0').");
     }
 
     

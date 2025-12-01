@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="re.forestier.edu.PlayerTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2025-12-01T16:32:37" hostname="DESKTOP-5ILICN9" time="0.272">
+<testsuite name="re.forestier.edu.PlayerTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2025-12-01T16:40:38" hostname="DESKTOP-5ILICN9" time="0.055">
   <properties/>
-  <testcase name="retrieveLevel_2_whenXPis10()" classname="re.forestier.edu.PlayerTest" time="0.191"/>
-  <testcase name="retrieveLevel_3_whenXPis27()" classname="re.forestier.edu.PlayerTest" time="0.003"/>
-  <testcase name="constructorValidDwarf()" classname="re.forestier.edu.PlayerTest" time="0.012"/>
+  <testcase name="retrieveLevel_2_whenXPis10()" classname="re.forestier.edu.PlayerTest" time="0.005"/>
+  <testcase name="retrieveLevel_3_whenXPis27()" classname="re.forestier.edu.PlayerTest" time="0.001"/>
+  <testcase name="constructorValidDwarf()" classname="re.forestier.edu.PlayerTest" time="0.008"/>
   <testcase name="retrieveLevel_1_whenXPis9()" classname="re.forestier.edu.PlayerTest" time="0.001"/>
-  <testcase name="retrieveLevel_4_whenXPis57()" classname="re.forestier.edu.PlayerTest" time="0.001"/>
+  <testcase name="retrieveLevel_4_whenXPis57()" classname="re.forestier.edu.PlayerTest" time="0.003"/>
   <testcase name="getXPValid()" classname="re.forestier.edu.PlayerTest" time="0.002"/>
-  <testcase name="addMoneyValid()" classname="re.forestier.edu.PlayerTest" time="0.002"/>
+  <testcase name="addMoneyValid()" classname="re.forestier.edu.PlayerTest" time="0.001"/>
   <testcase name="removeMoneyValid()" classname="re.forestier.edu.PlayerTest" time="0.002"/>
-  <testcase name="constructorInvalid()" classname="re.forestier.edu.PlayerTest" time="0.013"/>
+  <testcase name="constructorInvalid()" classname="re.forestier.edu.PlayerTest" time="0.007"/>
   <testcase name="retrieveLevel_5_whenXPis111()" classname="re.forestier.edu.PlayerTest" time="0.002"/>
-  <testcase name="construtorValidAdventurer()" classname="re.forestier.edu.PlayerTest" time="0.001"/>
-  <testcase name="pit_removeMoney_KillsBoundaryMutant()" classname="re.forestier.edu.PlayerTest" time="0.001"/>
-  <testcase name="removeMoneyThrowsError()" classname="re.forestier.edu.PlayerTest" time="0.007"/>
-  <testcase name="constructorValidArcher()" classname="re.forestier.edu.PlayerTest" time="0.002"/>
+  <testcase name="construtorValidAdventurer()" classname="re.forestier.edu.PlayerTest" time="0.0"/>
+  <testcase name="pit_removeMoney_KillsBoundaryMutant()" classname="re.forestier.edu.PlayerTest" time="0.002"/>
+  <testcase name="removeMoneyThrowsError()" classname="re.forestier.edu.PlayerTest" time="0.002"/>
+  <testcase name="constructorValidArcher()" classname="re.forestier.edu.PlayerTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

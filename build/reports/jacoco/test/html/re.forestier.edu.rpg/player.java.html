@@ -38,44 +38,50 @@ public class player {
     }
 
     public void removeMoney(int amount) throws IllegalArgumentException {
-<span class="fc bfc" id="L41" title="All 2 branches covered.">        if (money - amount &lt; 0) {</span>
-<span class="fc" id="L42">            throw new IllegalArgumentException(&quot;Player can't have a negative money!&quot;);</span>
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">        if (amount &lt; 0) {</span>
+<span class="nc" id="L42">            throw new IllegalArgumentException(&quot;Amount to remove cannot be negative!&quot;);</span>
+        }
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        if (money - amount &lt; 0) {</span>
+<span class="fc" id="L45">            throw new IllegalArgumentException(&quot;Player can't have a negative money!&quot;);</span>
         }
 
-<span class="fc" id="L45">        money = Integer.parseInt(money.toString()) - amount;</span>
-<span class="fc" id="L46">    }</span>
+<span class="fc" id="L48">        money -= amount;</span>
+<span class="fc" id="L49">    }</span>
+
     public void addMoney(int amount) {
-<span class="fc" id="L48">        var value = Integer.valueOf(amount);</span>
-<span class="pc bpc" id="L49" title="1 of 2 branches missed.">        money = money + (value != null ? value : 0);</span>
-<span class="fc" id="L50">    }</span>
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">        if (amount &lt; 0) {</span>
+<span class="nc" id="L53">            throw new IllegalArgumentException(&quot;Amount to add cannot be negative!&quot;);</span>
+        }
+<span class="fc" id="L55">        money += amount;</span>
+<span class="fc" id="L56">    }</span>
     public int retrieveLevel() {
         // (lvl-1) * 10 + round((lvl * xplvl-1)/4)
-<span class="fc" id="L53">        HashMap&lt;Integer, Integer&gt; levels = new HashMap&lt;&gt;();</span>
-<span class="fc" id="L54">        levels.put(2,10); // 1*10 + ((2*0)/4)</span>
-<span class="fc" id="L55">        levels.put(3,27); // 2*10 + ((3*10)/4)</span>
-<span class="fc" id="L56">        levels.put(4,57); // 3*10 + ((4*27)/4)</span>
-<span class="fc" id="L57">        levels.put(5,111); // 4*10 + ((5*57)/4)</span>
+<span class="fc" id="L59">        HashMap&lt;Integer, Integer&gt; levels = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L60">        levels.put(2,10); // 1*10 + ((2*0)/4)</span>
+<span class="fc" id="L61">        levels.put(3,27); // 2*10 + ((3*10)/4)</span>
+<span class="fc" id="L62">        levels.put(4,57); // 3*10 + ((4*27)/4)</span>
+<span class="fc" id="L63">        levels.put(5,111); // 4*10 + ((5*57)/4)</span>
         //TODO : ajouter les prochains niveaux
 
-<span class="fc bfc" id="L60" title="All 2 branches covered.">        if (xp &lt; levels.get(2)) {</span>
-<span class="fc" id="L61">            return 1;</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        if (xp &lt; levels.get(2)) {</span>
+<span class="fc" id="L67">            return 1;</span>
         }
-<span class="fc bfc" id="L63" title="All 2 branches covered.">        else if (xp &lt; levels.get(3)) {return 2;</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        else if (xp &lt; levels.get(3)) {return 2;</span>
         }
-<span class="fc bfc" id="L65" title="All 2 branches covered.">        if (xp &lt; levels.get(4)) {</span>
-<span class="fc" id="L66">            return 3;</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        if (xp &lt; levels.get(4)) {</span>
+<span class="fc" id="L72">            return 3;</span>
         }
-<span class="fc bfc" id="L68" title="All 2 branches covered.">        if (xp &lt; levels.get(5)) return 4;</span>
-<span class="fc" id="L69">        return 5;</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        if (xp &lt; levels.get(5)) return 4;</span>
+<span class="fc" id="L75">        return 5;</span>
     }
 
     public int getXp() {
-<span class="fc" id="L73">        return this.xp;</span>
+<span class="fc" id="L79">        return this.xp;</span>
     }
 
     public void setXp(int xp) {
-<span class="fc" id="L77">    this.xp = xp;</span>
-<span class="fc" id="L78">    }</span>
+<span class="fc" id="L83">    this.xp = xp;</span>
+<span class="fc" id="L84">    }</span>
 
     /*
     Ð˜Ð½Ð³Ñ€ÐµÐ´Ð¸ÐµÐ½Ñ‚Ñ‹:

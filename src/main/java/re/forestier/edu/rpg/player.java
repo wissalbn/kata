@@ -38,15 +38,21 @@ public class player {
     }
 
     public void removeMoney(int amount) throws IllegalArgumentException {
+        if (amount < 0) {
+            throw new IllegalArgumentException("Amount to remove cannot be negative!");
+        }
         if (money - amount < 0) {
             throw new IllegalArgumentException("Player can't have a negative money!");
         }
 
-        money = Integer.parseInt(money.toString()) - amount;
+        money -= amount;
     }
+
     public void addMoney(int amount) {
-        var value = Integer.valueOf(amount);
-        money = money + (value != null ? value : 0);
+        if (amount < 0) {
+            throw new IllegalArgumentException("Amount to add cannot be negative!");
+        }
+        money += amount;
     }
     public int retrieveLevel() {
         // (lvl-1) * 10 + round((lvl * xplvl-1)/4)

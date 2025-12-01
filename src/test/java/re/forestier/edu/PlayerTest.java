@@ -2,7 +2,6 @@ package re.forestier.edu;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import re.forestier.edu.rpg.player;
@@ -100,13 +99,12 @@ public class PlayerTest {
     }
 
     @Test
-    void constructorInvalid() {
-        //Arrange
-        player player = new player("Test", "Tester", "CREATIVE", 200, new ArrayList<>());
-        
+    void constructorInvalid() {        
 
         //Assert
-        assertNull(player.getAvatarClass());
+        assertThrows(IllegalArgumentException.class, () -> { 
+            new player("Test", "NoClass", "MAGE", 100, new ArrayList<>());
+           }, "Une exception doit être levée pour une classe invalide.");
     }
     @Test
     void construtorValidAdventurer(){

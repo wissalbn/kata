@@ -17,6 +17,13 @@ public class player {
     public int currenthealthpoints;
     protected int xp;
 
+    private static final int[] LEVEL_THRESHOLDS = {10, 27, 57, 111}; 
+    // xp < 10  -> level 1
+    // xp < 27  -> level 2
+    // xp < 57  -> level 3
+    // xp < 111 -> level 4
+    // else     -> level 5
+
 
     public HashMap<String, Integer> abilities;
     public ArrayList<String> inventory;
@@ -49,24 +56,15 @@ public class player {
         money += amount;
     }
     public int retrieveLevel() {
-        // (lvl-1) * 10 + round((lvl * xplvl-1)/4)
-        HashMap<Integer, Integer> levels = new HashMap<>();
-        levels.put(2,10); // 1*10 + ((2*0)/4)
-        levels.put(3,27); // 2*10 + ((3*10)/4)
-        levels.put(4,57); // 3*10 + ((4*27)/4)
-        levels.put(5,111); // 4*10 + ((5*57)/4)
+        
         //TODO : ajouter les prochains niveaux
 
-        if (xp < levels.get(2)) {
-            return 1;
+        for (int i = 0; i < LEVEL_THRESHOLDS.length; i++) {
+            if (xp < LEVEL_THRESHOLDS[i]) {
+                return i + 1;
+            }
         }
-        else if (xp < levels.get(3)) {return 2;
-        }
-        if (xp < levels.get(4)) {
-            return 3;
-        }
-        if (xp < levels.get(5)) return 4;
-        return 5;
+        return LEVEL_THRESHOLDS.length + 1; // Niveau 5
     }
 
     public int getXp() {

@@ -38,9 +38,6 @@ public class player {
     }
 
     public void removeMoney(int amount) throws IllegalArgumentException {
-        if (amount < 0) {
-            throw new IllegalArgumentException("Amount to remove cannot be negative!");
-        }
         if (money - amount < 0) {
             throw new IllegalArgumentException("Player can't have a negative money!");
         }
@@ -49,9 +46,6 @@ public class player {
     }
 
     public void addMoney(int amount) {
-        if (amount < 0) {
-            throw new IllegalArgumentException("Amount to add cannot be negative!");
-        }
         money += amount;
     }
     public int retrieveLevel() {
@@ -82,16 +76,5 @@ public class player {
     public void setXp(int xp) {
     this.xp = xp;
     }
-
-    /*
-    Ингредиенты:
-        Для теста:
-
-            250 г муки
-            125 г сливочного масла (холодное)
-            70 г сахара
-            1 яйцо
-            1 щепотка соли
-     */
 
 }

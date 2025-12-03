@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class player {
-    public String playerName;
+    public final String playerName;
     public String Avatar_name;
     private String AvatarClass;
 
-    public Integer money;
-    private Float __real_money__;
+    public int money;
 
 
     public int level;
@@ -17,7 +16,8 @@ public class player {
     public int currenthealthpoints;
     protected int xp;
 
-<span class="fc" id="L20">    private static final int[] LEVEL_THRESHOLDS = {10, 27, 57, 111}; </span>
+<span class="fc" id="L19">    private static final int[] LEVEL_THRESHOLDS = {10, 27, 57, 111};</span>
+    // (lvl-1) * 10 + round((lvl * xplvl-1)/4) 
     // xp &lt; 10  -&gt; level 1
     // xp &lt; 27  -&gt; level 2
     // xp &lt; 57  -&gt; level 3
@@ -27,53 +27,63 @@ public class player {
 
     public HashMap&lt;String, Integer&gt; abilities;
     public ArrayList&lt;String&gt; inventory;
-<span class="fc" id="L30">    public player(String playerName, String avatar_name, String avatarClass, int money, ArrayList&lt;String&gt; inventory) {</span>
-<span class="fc bfc" id="L31" title="All 6 branches covered.">        if (!avatarClass.equals(&quot;ARCHER&quot;) &amp;&amp; !avatarClass.equals(&quot;ADVENTURER&quot;) &amp;&amp; !avatarClass.equals(&quot;DWARF&quot;) ) {</span>
-<span class="fc" id="L32">            throw new IllegalArgumentException(&quot;Invalid avatar class: &quot; + avatarClass);</span>
-        }
+    private AvatarType avatarEnum;
 
-<span class="fc" id="L35">        this.playerName = playerName;</span>
-<span class="fc" id="L36">        Avatar_name = avatar_name;</span>
-<span class="fc" id="L37">        AvatarClass = avatarClass;</span>
-<span class="fc" id="L38">        this.money = Integer.valueOf(money);</span>
-<span class="fc" id="L39">        this.inventory = inventory;</span>
-<span class="fc" id="L40">        this.abilities = UpdatePlayer.abilitiesPerTypeAndLevel().get(AvatarClass).get(1);</span>
-<span class="fc" id="L41">    }</span>
+<span class="fc" id="L32">    public player(String playerName, String avatar_name, String avatarClass, int money, ArrayList&lt;String&gt; inventory) {</span>
+        try {
+<span class="fc" id="L34">            this.avatarEnum = AvatarType.valueOf(avatarClass.toUpperCase());</span>
+<span class="fc" id="L35">        } catch (IllegalArgumentException e) {</span>
+<span class="fc" id="L36">            throw new IllegalArgumentException(&quot;Invalid avatar class: &quot; + avatarClass);</span>
+<span class="fc" id="L37">        }</span>
+
+
+<span class="fc" id="L40">        this.playerName = playerName;</span>
+<span class="fc" id="L41">        Avatar_name = avatar_name;</span>
+<span class="fc" id="L42">        AvatarClass = avatarClass;</span>
+<span class="fc" id="L43">        this.money = Integer.valueOf(money);</span>
+<span class="fc" id="L44">        this.inventory = inventory;</span>
+<span class="fc" id="L45">        this.abilities = UpdatePlayer.abilitiesPerTypeAndLevel().get(AvatarClass).get(1);</span>
+
+<span class="fc" id="L47">        this.level = 1;</span>
+<span class="fc" id="L48">        this.healthpoints = 100;</span>
+<span class="fc" id="L49">        this.currenthealthpoints = 100;</span>
+<span class="fc" id="L50">        this.xp = 0;</span>
+<span class="fc" id="L51">    }</span>
 
     public String getAvatarClass () {
-<span class="fc" id="L44">        return AvatarClass;</span>
+<span class="fc" id="L54">        return AvatarClass;</span>
     }
 
     public void removeMoney(int amount) throws IllegalArgumentException {
-<span class="fc bfc" id="L48" title="All 2 branches covered.">        if (money - amount &lt; 0) {</span>
-<span class="fc" id="L49">            throw new IllegalArgumentException(&quot;Player can't have a negative money!&quot;);</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if (money - amount &lt; 0) {</span>
+<span class="fc" id="L59">            throw new IllegalArgumentException(&quot;Player can't have a negative money!&quot;);</span>
         }
 
-<span class="fc" id="L52">        money -= amount;</span>
-<span class="fc" id="L53">    }</span>
+<span class="fc" id="L62">        money -= amount;</span>
+<span class="fc" id="L63">    }</span>
 
     public void addMoney(int amount) {
-<span class="fc" id="L56">        money += amount;</span>
-<span class="fc" id="L57">    }</span>
+<span class="fc" id="L66">        money += amount;</span>
+<span class="fc" id="L67">    }</span>
     public int retrieveLevel() {
         
         //TODO : ajouter les prochains niveaux
 
-<span class="fc bfc" id="L62" title="All 2 branches covered.">        for (int i = 0; i &lt; LEVEL_THRESHOLDS.length; i++) {</span>
-<span class="fc bfc" id="L63" title="All 2 branches covered.">            if (xp &lt; LEVEL_THRESHOLDS[i]) {</span>
-<span class="fc" id="L64">                return i + 1;</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        for (int i = 0; i &lt; LEVEL_THRESHOLDS.length; i++) {</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">            if (xp &lt; LEVEL_THRESHOLDS[i]) {</span>
+<span class="fc" id="L74">                return i + 1;</span>
             }
         }
-<span class="fc" id="L67">        return LEVEL_THRESHOLDS.length + 1; // Niveau 5</span>
+<span class="fc" id="L77">        return LEVEL_THRESHOLDS.length + 1; // Niveau 5</span>
     }
 
     public int getXp() {
-<span class="fc" id="L71">        return this.xp;</span>
+<span class="fc" id="L81">        return this.xp;</span>
     }
 
     public void setXp(int xp) {
-<span class="fc" id="L75">    this.xp = xp;</span>
-<span class="fc" id="L76">    }</span>
+<span class="fc" id="L85">    this.xp = xp;</span>
+<span class="fc" id="L86">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

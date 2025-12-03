@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class player {
-    public String playerName;
+    public final String playerName;
     public String Avatar_name;
     private String AvatarClass;
 
-    public Integer money;
-    private Float __real_money__;
+    public int money;
 
 
     public int level;
@@ -17,7 +16,8 @@ public class player {
     public int currenthealthpoints;
     protected int xp;
 
-    private static final int[] LEVEL_THRESHOLDS = {10, 27, 57, 111}; 
+    private static final int[] LEVEL_THRESHOLDS = {10, 27, 57, 111};
+    // (lvl-1) * 10 + round((lvl * xplvl-1)/4) 
     // xp < 10  -> level 1
     // xp < 27  -> level 2
     // xp < 57  -> level 3
@@ -27,10 +27,15 @@ public class player {
 
     public HashMap<String, Integer> abilities;
     public ArrayList<String> inventory;
+    private AvatarType avatarEnum;
+
     public player(String playerName, String avatar_name, String avatarClass, int money, ArrayList<String> inventory) {
-        if (!avatarClass.equals("ARCHER") && !avatarClass.equals("ADVENTURER") && !avatarClass.equals("DWARF") ) {
+        try {
+            this.avatarEnum = AvatarType.valueOf(avatarClass.toUpperCase());
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Invalid avatar class: " + avatarClass);
         }
+
 
         this.playerName = playerName;
         Avatar_name = avatar_name;
@@ -38,6 +43,11 @@ public class player {
         this.money = Integer.valueOf(money);
         this.inventory = inventory;
         this.abilities = UpdatePlayer.abilitiesPerTypeAndLevel().get(AvatarClass).get(1);
+
+        this.level = 1;
+        this.healthpoints = 100;
+        this.currenthealthpoints = 100;
+        this.xp = 0;
     }
 
     public String getAvatarClass () {

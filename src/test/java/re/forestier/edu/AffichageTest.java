@@ -6,7 +6,7 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
-import re.forestier.edu.rpg.Affichage;
+import re.forestier.edu.rpg.display.Affichage;
 import re.forestier.edu.rpg.player;
 
 public class AffichageTest {
@@ -33,7 +33,7 @@ public class AffichageTest {
     @Test
     void forceClassLoadingCoverage() throws Exception {
         try {
-            Constructor<re.forestier.edu.rpg.Affichage> constructor = re.forestier.edu.rpg.Affichage.class.getDeclaredConstructor();
+            Constructor<Affichage> constructor = Affichage.class.getDeclaredConstructor();
             
             constructor.setAccessible(true);
             
@@ -49,7 +49,7 @@ public class AffichageTest {
         player player = new player("KillLoop", "Fighter", "ARCHER", 10, new ArrayList<>());
 
         //ACT
-        String affichage = re.forestier.edu.rpg.Affichage.afficherJoueur(player);
+        String affichage = Affichage.afficherJoueur(player);
 
         //ASSERT
         

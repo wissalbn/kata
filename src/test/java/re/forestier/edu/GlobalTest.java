@@ -1,7 +1,7 @@
 package re.forestier.edu;
 
 import org.junit.jupiter.api.Test;
-import re.forestier.edu.rpg.Affichage;
+import re.forestier.edu.rpg.display.Affichage;
 import re.forestier.edu.rpg.UpdatePlayer;
 import re.forestier.edu.rpg.player;
 

@@ -1,4 +1,6 @@
-package re.forestier.edu.rpg;
+package re.forestier.edu.rpg.display;
+
+import re.forestier.edu.rpg.player;
 
 public class Affichage {
 
@@ -21,7 +23,7 @@ public class Affichage {
     private static void appendHeader(StringBuilder builder, player player) {
         builder.append("Joueur ").append(player.Avatar_name).append(" joué par ").append(player.playerName);
 
-        builder.append("\nNiveau : ").append(player.retrieveLevel()).append(" (XP totale : ").append(player.xp).append(")");
+        builder.append("\nNiveau : ").append(player.retrieveLevel()).append(" (XP totale : ").append(player.getXp()).append(")");
     }
 
     private static void appendAbilities(StringBuilder builder, player player) {

@@ -122,47 +122,68 @@ public class UpdatePlayer {
 
     // majFinDeTour met à jour les points de vie
     public static void majFinDeTour(player player) {
-        if(player.currenthealthpoints == 0) {
+        if (player == null) {
+            throw new IllegalArgumentException("Le joueur ne peux pas etre null");
+        }
+
+        //Joueur KO : on ne fait rien 
+        if (player.currenthealthpoints == 0) {
             System.out.println("Le joueur est KO !");
             return;
         }
 
-        if(player.currenthealthpoints < player.healthpoints/2) {
-            if(!player.getAvatarClass().equals("ADVENTURER")) {
-                if(player.getAvatarClass().equals("DWARF")) {
-                    if(player.inventory.contains("Holy Elixir")) {
-                        player.currenthealthpoints+=1;
-                    }
-                    player.currenthealthpoints+=1;
-                } else if(player.getAvatarClass().equals("ADVENTURER")) {
-                    player.currenthealthpoints+=2;
-                }
-
-
-                if(player.getAvatarClass().equals("ARCHER")) {
-                    player.currenthealthpoints+=1;
-                    if(player.inventory.contains("Magic Bow")) {
-                        player.currenthealthpoints+=player.currenthealthpoints/8-1;
-                    }
-                }
-            } else {
-                player.currenthealthpoints+=2;
-                if(player.retrieveLevel() < 3) {
-                    player.currenthealthpoints-=1;
-                }
-            }
-        } else if(player.currenthealthpoints >= player.healthpoints/2){
-            if(player.currenthealthpoints >= player.healthpoints) {
-                player.currenthealthpoints = player.healthpoints;
-                return;
-            }
+        //Si les PV > max on les clamp directement
+        if (player.currenthealthpoints > player.healthpoints) {
+            player.currenthealthpoints = player.healthpoints;
+            return;
         }
 
+        //Régénération seulement si en-dessous de la moitié des PV max
+        if (player.currenthealthpoints < player.healthpoints / 2) {
+            applyLowHealthRegeneration(player);
+        }
 
-        if(player.currenthealthpoints >= player.healthpoints) {
+        //On s'assure de ne jamais dépasser le max
+        if (player.currenthealthpoints > player.healthpoints) {
             player.currenthealthpoints = player.healthpoints;
         }
     }
+
+    private static void applyLowHealthRegeneration(player player) {
+        AvatarType type = AvatarType.valueOf(player.getAvatarClass().toUpperCase());
+
+        switch (type) {
+            case DWARF:
+                //+1 de base
+                player.currenthealthpoints += 1;
+                //+1 supplémentaire avec Holy Elixir
+                if (player.inventory != null && player.inventory.contains("Holy Elixir")) {
+                    player.currenthealthpoints += 1;
+                }
+                break;
+
+            case ARCHER:
+                //+1 de base
+                player.currenthealthpoints += 1;
+                //Bonus avec Magic Bow 
+                if (player.inventory != null && player.inventory.contains("Magic Bow")) {
+                    player.currenthealthpoints += player.currenthealthpoints / 8 - 1;
+                }
+                break;
+
+            case ADVENTURER:
+                //+2 de base
+                player.currenthealthpoints += 2;
+                //Malus -1 pour les niveaux < 3
+                if (player.retrieveLevel() < 3) {
+                    player.currenthealthpoints -= 1;
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+
 }
 
-// Le joueur regagne des points de vie en fin de tour selon sa classe et son inventaire

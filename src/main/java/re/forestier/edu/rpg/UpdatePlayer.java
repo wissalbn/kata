@@ -164,3 +164,5 @@ public class UpdatePlayer {
         }
     }
 }
+
+// Le joueur regagne des points de vie en fin de tour selon sa classe et son inventaire

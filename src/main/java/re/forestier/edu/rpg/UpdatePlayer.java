@@ -66,7 +66,7 @@ public class UpdatePlayer {
         archerLevel5.put("ATK", 4);
         archerMap.put(5, archerLevel5);
 
-        abilitiesPerTypeAndLevel.put("ARCHER", archerMap);
+        abilitiesPerTypeAndLevel.put(AvatarType.ARCHER.name(), archerMap);
 
 
         HashMap<Integer, HashMap<String, Integer>> dwarf = new HashMap<>();

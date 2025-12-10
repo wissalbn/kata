@@ -175,7 +175,7 @@ public class UpdatePlayer {
                 //+1 de base
                 player.currenthealthpoints += 1;
                 //+1 supplémentaire avec Holy Elixir
-                if (player.inventory != null && player.inventory.contains("Holy Elixir")) {
+                if (player.inventory.contains("Holy Elixir")) {
                     player.currenthealthpoints += 1;
                 }
                 break;
@@ -184,7 +184,7 @@ public class UpdatePlayer {
                 //+1 de base
                 player.currenthealthpoints += 1;
                 //Bonus avec Magic Bow 
-                if (player.inventory != null && player.inventory.contains("Magic Bow")) {
+                if (player.inventory.contains("Magic Bow")) {
                     player.currenthealthpoints += player.currenthealthpoints / 8 - 1;
                 }
                 break;
@@ -199,6 +199,7 @@ public class UpdatePlayer {
                 break;
 
             default:
+                //Aucun bonus/malus
                 break;
         }
     }

@@ -93,7 +93,7 @@ public class UpdatePlayer {
         dwarfLevel5.put("CHA", 1);
         dwarf.put(5, dwarfLevel5);
 
-        abilitiesPerTypeAndLevel.put("DWARF", dwarf);
+        abilitiesPerTypeAndLevel.put(AvatarType.DWARF.name(), dwarf);
 
         return abilitiesPerTypeAndLevel;
     }

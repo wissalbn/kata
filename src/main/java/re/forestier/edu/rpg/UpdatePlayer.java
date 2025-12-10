@@ -38,7 +38,7 @@ public class UpdatePlayer {
         adventurerLevel5.put("DEF", 4);
         adventurerMap.put(5, adventurerLevel5);
 
-        abilitiesPerTypeAndLevel.put("ADVENTURER", adventurerMap);
+        abilitiesPerTypeAndLevel.put(AvatarType.ADVENTURER.name(), adventurerMap);
 
 
         HashMap<Integer, HashMap<String, Integer>> archerMap = new HashMap<>();

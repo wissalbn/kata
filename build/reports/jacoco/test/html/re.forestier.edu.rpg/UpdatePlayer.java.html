@@ -98,70 +98,111 @@ import java.util.Random;
 <span class="fc" id="L98">        return abilitiesPerTypeAndLevel;</span>
     }
 
+<span class="fc" id="L101">    private static final Random RANDOM = new Random();</span>
     public static boolean addXp(player player, int xp) {
-<span class="fc" id="L102">        int currentLevel = player.retrieveLevel();</span>
-<span class="fc" id="L103">        player.xp += xp;</span>
-<span class="fc" id="L104">        int newLevel = player.retrieveLevel();</span>
-
-<span class="fc bfc" id="L106" title="All 2 branches covered.">        if (newLevel != currentLevel) {</span>
-            // Player leveled-up!
-            // Give a random object
-            ;
-<span class="fc" id="L110">            Random random = new Random();</span>
-<span class="fc" id="L111">            player.inventory.add(objectList[random.nextInt(objectList.length - 0) + 0]);</span>
-
-            // Add/upgrade abilities to player
-<span class="fc" id="L114">            HashMap&lt;String, Integer&gt; abilities = abilitiesPerTypeAndLevel().get(player.getAvatarClass()).get(newLevel);</span>
-<span class="fc" id="L115">            abilities.forEach((ability, level) -&gt; {</span>
-<span class="fc" id="L116">                player.abilities.put(ability, abilities.get(ability));</span>
-<span class="fc" id="L117">            });</span>
-<span class="fc" id="L118">            return true;</span>
+<span class="pc bpc" id="L103" title="1 of 2 branches missed.">        if (player == null) {</span>
+<span class="nc" id="L104">            throw new IllegalArgumentException(&quot;Le joueur ne peux pas etre null&quot;);</span>
         }
-<span class="fc" id="L120">        return false;</span>
+<span class="fc" id="L106">        int currentLevel = player.retrieveLevel();</span>
+<span class="fc" id="L107">        player.xp += xp;</span>
+<span class="fc" id="L108">        int newLevel = player.retrieveLevel();</span>
+
+<span class="fc bfc" id="L110" title="All 2 branches covered.">        if (newLevel != currentLevel) {</span>
+<span class="fc" id="L111">            addRandomObjectToInventory(player);</span>
+<span class="fc" id="L112">            applyNewLevelAbilities(player, newLevel);</span>
+<span class="fc" id="L113">            return true;</span>
+        }
+<span class="fc" id="L115">        return false;</span>
     }
+
+    private static void addRandomObjectToInventory(player player) {
+<span class="fc" id="L119">            int index = RANDOM.nextInt(objectList.length);</span>
+<span class="fc" id="L120">            player.inventory.add(objectList[index]);</span>
+<span class="fc" id="L121">        }</span>
+
+    private static void applyNewLevelAbilities(player player, int newLevel) {
+        HashMap&lt;String, Integer&gt; abilitiesForLevel =
+<span class="fc" id="L125">                abilitiesPerTypeAndLevel()</span>
+<span class="fc" id="L126">                        .get(player.getAvatarClass())</span>
+<span class="fc" id="L127">                        .get(newLevel);</span>
+
+<span class="pc bpc" id="L129" title="1 of 2 branches missed.">        if (abilitiesForLevel == null) {</span>
+            // pas dâ€™abilities pour ce niveau doncon fait rien
+<span class="nc" id="L131">            return;</span>
+        }
+
+<span class="fc" id="L134">        abilitiesForLevel.forEach((ability, level) -&gt; {</span>
+<span class="fc" id="L135">            player.abilities.put(ability, level);</span>
+<span class="fc" id="L136">        });</span>
+<span class="fc" id="L137">    }</span>
+
+
 
     // majFinDeTour met Ã  jour les points de vie
     public static void majFinDeTour(player player) {
-<span class="fc bfc" id="L125" title="All 2 branches covered.">        if(player.currenthealthpoints == 0) {</span>
-<span class="fc" id="L126">            System.out.println(&quot;Le joueur est KO !&quot;);</span>
-<span class="fc" id="L127">            return;</span>
+<span class="pc bpc" id="L143" title="1 of 2 branches missed.">        if (player == null) {</span>
+<span class="nc" id="L144">            throw new IllegalArgumentException(&quot;Le joueur ne peux pas etre null&quot;);</span>
         }
 
-<span class="fc bfc" id="L130" title="All 2 branches covered.">        if(player.currenthealthpoints &lt; player.healthpoints/2) {</span>
-<span class="fc bfc" id="L131" title="All 2 branches covered.">            if(!player.getAvatarClass().equals(&quot;ADVENTURER&quot;)) {</span>
-<span class="fc bfc" id="L132" title="All 2 branches covered.">                if(player.getAvatarClass().equals(&quot;DWARF&quot;)) {</span>
-<span class="fc bfc" id="L133" title="All 2 branches covered.">                    if(player.inventory.contains(&quot;Holy Elixir&quot;)) {</span>
-<span class="fc" id="L134">                        player.currenthealthpoints+=1;</span>
-                    }
-<span class="fc" id="L136">                    player.currenthealthpoints+=1;</span>
-<span class="pc bpc" id="L137" title="1 of 2 branches missed.">                } else if(player.getAvatarClass().equals(&quot;ADVENTURER&quot;)) {</span>
-<span class="nc" id="L138">                    player.currenthealthpoints+=2;</span>
-                }
-
-
-<span class="fc bfc" id="L142" title="All 2 branches covered.">                if(player.getAvatarClass().equals(&quot;ARCHER&quot;)) {</span>
-<span class="fc" id="L143">                    player.currenthealthpoints+=1;</span>
-<span class="fc bfc" id="L144" title="All 2 branches covered.">                    if(player.inventory.contains(&quot;Magic Bow&quot;)) {</span>
-<span class="fc" id="L145">                        player.currenthealthpoints+=player.currenthealthpoints/8-1;</span>
-                    }
-                }
-            } else {
-<span class="fc" id="L149">                player.currenthealthpoints+=2;</span>
-<span class="fc bfc" id="L150" title="All 2 branches covered.">                if(player.retrieveLevel() &lt; 3) {</span>
-<span class="fc" id="L151">                    player.currenthealthpoints-=1;</span>
-                }
-            }
-<span class="pc bpc" id="L154" title="1 of 2 branches missed.">        } else if(player.currenthealthpoints &gt;= player.healthpoints/2){</span>
-<span class="fc bfc" id="L155" title="All 2 branches covered.">            if(player.currenthealthpoints &gt;= player.healthpoints) {</span>
-<span class="fc" id="L156">                player.currenthealthpoints = player.healthpoints;</span>
-<span class="fc" id="L157">                return;</span>
-            }
+        //Joueur KO : on ne fait rien 
+<span class="fc bfc" id="L148" title="All 2 branches covered.">        if (player.currenthealthpoints == 0) {</span>
+<span class="fc" id="L149">            System.out.println(&quot;Le joueur est KO !&quot;);</span>
+<span class="fc" id="L150">            return;</span>
         }
 
-
-<span class="pc bpc" id="L162" title="1 of 2 branches missed.">        if(player.currenthealthpoints &gt;= player.healthpoints) {</span>
-<span class="nc" id="L163">            player.currenthealthpoints = player.healthpoints;</span>
+        //Si les PV &gt; max on les clamp directement
+<span class="fc bfc" id="L154" title="All 2 branches covered.">        if (player.currenthealthpoints &gt; player.healthpoints) {</span>
+<span class="fc" id="L155">            player.currenthealthpoints = player.healthpoints;</span>
+<span class="fc" id="L156">            return;</span>
         }
-<span class="fc" id="L165">    }</span>
+
+        //RÃ©gÃ©nÃ©ration seulement si en-dessous de la moitiÃ© des PV max
+<span class="fc bfc" id="L160" title="All 2 branches covered.">        if (player.currenthealthpoints &lt; player.healthpoints / 2) {</span>
+<span class="fc" id="L161">            applyLowHealthRegeneration(player);</span>
+        }
+
+        //On s'assure de ne jamais dÃ©passer le max
+<span class="pc bpc" id="L165" title="1 of 2 branches missed.">        if (player.currenthealthpoints &gt; player.healthpoints) {</span>
+<span class="nc" id="L166">            player.currenthealthpoints = player.healthpoints;</span>
+        }
+<span class="fc" id="L168">    }</span>
+
+    private static void applyLowHealthRegeneration(player player) {
+<span class="fc" id="L171">        AvatarType type = AvatarType.valueOf(player.getAvatarClass().toUpperCase());</span>
+
+<span class="pc bpc" id="L173" title="1 of 4 branches missed.">        switch (type) {</span>
+            case DWARF:
+                //+1 de base
+<span class="fc" id="L176">                player.currenthealthpoints += 1;</span>
+                //+1 supplÃ©mentaire avec Holy Elixir
+<span class="pc bpc" id="L178" title="1 of 4 branches missed.">                if (player.inventory != null &amp;&amp; player.inventory.contains(&quot;Holy Elixir&quot;)) {</span>
+<span class="fc" id="L179">                    player.currenthealthpoints += 1;</span>
+                }
+                break;
+
+            case ARCHER:
+                //+1 de base
+<span class="fc" id="L185">                player.currenthealthpoints += 1;</span>
+                //Bonus avec Magic Bow 
+<span class="pc bpc" id="L187" title="1 of 4 branches missed.">                if (player.inventory != null &amp;&amp; player.inventory.contains(&quot;Magic Bow&quot;)) {</span>
+<span class="fc" id="L188">                    player.currenthealthpoints += player.currenthealthpoints / 8 - 1;</span>
+                }
+                break;
+
+            case ADVENTURER:
+                //+2 de base
+<span class="fc" id="L194">                player.currenthealthpoints += 2;</span>
+                //Malus -1 pour les niveaux &lt; 3
+<span class="fc bfc" id="L196" title="All 2 branches covered.">                if (player.retrieveLevel() &lt; 3) {</span>
+<span class="fc" id="L197">                    player.currenthealthpoints -= 1;</span>
+                }
+                break;
+
+            default:
+                break;
+        }
+<span class="fc" id="L204">    }</span>
+
 }
+
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

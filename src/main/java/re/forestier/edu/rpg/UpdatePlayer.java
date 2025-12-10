@@ -98,27 +98,45 @@ public class UpdatePlayer {
         return abilitiesPerTypeAndLevel;
     }
 
+    private static final Random RANDOM = new Random();
     public static boolean addXp(player player, int xp) {
+        if (player == null) {
+            throw new IllegalArgumentException("Le joueur ne peux pas etre null");
+        }
         int currentLevel = player.retrieveLevel();
         player.xp += xp;
         int newLevel = player.retrieveLevel();
 
         if (newLevel != currentLevel) {
-            // Player leveled-up!
-            // Give a random object
-            ;
-            Random random = new Random();
-            player.inventory.add(objectList[random.nextInt(objectList.length - 0) + 0]);
-
-            // Add/upgrade abilities to player
-            HashMap<String, Integer> abilities = abilitiesPerTypeAndLevel().get(player.getAvatarClass()).get(newLevel);
-            abilities.forEach((ability, level) -> {
-                player.abilities.put(ability, abilities.get(ability));
-            });
+            addRandomObjectToInventory(player);
+            applyNewLevelAbilities(player, newLevel);
             return true;
         }
         return false;
     }
+
+    private static void addRandomObjectToInventory(player player) {
+            int index = RANDOM.nextInt(objectList.length);
+            player.inventory.add(objectList[index]);
+        }
+
+    private static void applyNewLevelAbilities(player player, int newLevel) {
+        HashMap<String, Integer> abilitiesForLevel =
+                abilitiesPerTypeAndLevel()
+                        .get(player.getAvatarClass())
+                        .get(newLevel);
+
+        if (abilitiesForLevel == null) {
+            // pas d’abilities pour ce niveau doncon fait rien
+            return;
+        }
+
+        abilitiesForLevel.forEach((ability, level) -> {
+            player.abilities.put(ability, level);
+        });
+    }
+
+
 
     // majFinDeTour met à jour les points de vie
     public static void majFinDeTour(player player) {

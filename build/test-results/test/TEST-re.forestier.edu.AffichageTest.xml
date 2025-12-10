@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="re.forestier.edu.AffichageTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-12-05T15:43:27" hostname="DESKTOP-5ILICN9" time="0.045">
+<testsuite name="re.forestier.edu.AffichageTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-12-09T16:37:55" hostname="DESKTOP-5ILICN9" time="0.058">
   <properties/>
-  <testcase name="forceClassLoadingCoverage()" classname="re.forestier.edu.AffichageTest" time="0.029"/>
-  <testcase name="testAffichageIventaire()" classname="re.forestier.edu.AffichageTest" time="0.013"/>
-  <testcase name="pit_Affichage_KillsForEachMutant()" classname="re.forestier.edu.AffichageTest" time="0.001"/>
+  <testcase name="forceClassLoadingCoverage()" classname="re.forestier.edu.AffichageTest" time="0.04"/>
+  <testcase name="testAffichageIventaire()" classname="re.forestier.edu.AffichageTest" time="0.016"/>
+  <testcase name="pit_Affichage_KillsForEachMutant()" classname="re.forestier.edu.AffichageTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

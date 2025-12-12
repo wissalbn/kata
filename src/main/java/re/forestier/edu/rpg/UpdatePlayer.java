@@ -126,11 +126,6 @@ public class UpdatePlayer {
                         .get(player.getAvatarClass())
                         .get(newLevel);
 
-        if (abilitiesForLevel == null) {
-            // pas d’abilities pour ce niveau doncon fait rien
-            return;
-        }
-
         abilitiesForLevel.forEach((ability, level) -> {
             player.abilities.put(ability, level);
         });
@@ -161,10 +156,6 @@ public class UpdatePlayer {
             applyLowHealthRegeneration(player);
         }
 
-        //On s'assure de ne jamais dépasser le max
-        if (player.currenthealthpoints > player.healthpoints) {
-            player.currenthealthpoints = player.healthpoints;
-        }
     }
 
     private static void applyLowHealthRegeneration(player player) {

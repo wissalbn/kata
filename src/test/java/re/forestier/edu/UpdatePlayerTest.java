@@ -3,6 +3,7 @@ package re.forestier.edu;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -287,6 +288,57 @@ public class UpdatePlayerTest {
     // donc aucun test ne peut le tuer.
 
 
+    //Tests après le refractoring
 
+    @Test
+    void addXp_ShouldThrowExceptionForNullPlayer() {
+        assertThrows(IllegalArgumentException.class, () -> UpdatePlayer.addXp(null, 10), 
+            "addXp doit rejeter les joueurs null.");
+    }
+
+    @Test
+    void majFinDeTour_ShouldThrowExceptionForNullPlayer() {
+        assertThrows(IllegalArgumentException.class, () -> UpdatePlayer.majFinDeTour(null), 
+            "majFinDeTour doit rejeter les joueurs null.");
+    }
+
+    @Test
+void majFinDeTour_FinalCapCheck_DwarfOverflowsHP() {
+    // ARRANGE: DWARF avec Élixir (Soin = +2 PV garanti)
+    player player = new player("Test", "Overflow", "DWARF", 0, new ArrayList<>());
+    player.inventory.add("Holy Elixir"); 
+
+    // SETUP: NOUVELLE VALEUR CRITIQUE
+    player.healthpoints = 4; // HP Max = 4. HP/2 = 2.
+    player.currenthealthpoints = 1; // 1 < 2 est VRAI. Entre dans le soin critique.
+    
+    // Act
+    UpdatePlayer.majFinDeTour(player);
+
+    // Assert (PV doit être 3)
+    // 1 (start) + 2 (soin) = 3. Le max est 4. Pas de débordement, mais la zone critique est couverte.
+    assertEquals(3, player.currenthealthpoints, 
+        "Le PV doit augmenter de 2 (DWARF + Elixir).");
+}
+
+@Test
+void majFinDeTour_DwarfHealingInCriticalZone() {
+    // ARRANGE: DWARF avec Élixir (Soin garanti = +2 PV)
+    player player = new player("Test", "Critical", "DWARF", 0, new ArrayList<>());
+    player.inventory.add("Holy Elixir"); 
+
+    // SETUP: HP Max = 4. HP/2 = 2. HP Start = 1. (1 < 2 est VRAI). Soin +2.
+    // Cette configuration garantit l'entrée dans le bloc de soin sans la division entière (3/2=1)
+    player.healthpoints = 4; 
+    player.currenthealthpoints = 1; 
+    
+    // ACT
+    UpdatePlayer.majFinDeTour(player);
+
+    // ASSERT
+    // 1 (start) + 2 (soin) = 3. 
+    assertEquals(3, player.currenthealthpoints, 
+        "Le DWARF doit recevoir +2 PV (1 -> 3) pour couvrir le chemin critique.");
+}
         
 }

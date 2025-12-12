@@ -8,7 +8,7 @@ import java.util.Random;
 <span class="fc" id="L8">    private final static String[] objectList = {&quot;Lookout Ring : Prevents surprise attacks&quot;,&quot;Scroll of Stupidity : INT-2 when applied to an enemy&quot;, &quot;Draupnir : Increases XP gained by 100%&quot;, &quot;Magic Charm : Magic +10 for 5 rounds&quot;, &quot;Rune Staff of Curse : May burn your ennemies... Or yourself. Who knows?&quot;, &quot;Combat Edge : Well, that's an edge&quot;, &quot;Holy Elixir : Recover your HP&quot;</span>
     };
 
-    public static HashMap&lt;String, HashMap&lt;Integer, HashMap&lt;String, Integer&gt;&gt;&gt; abilitiesPerTypeAndLevel() {
+    public static final HashMap&lt;String, HashMap&lt;Integer, HashMap&lt;String, Integer&gt;&gt;&gt; abilitiesPerTypeAndLevel() {
 <span class="fc" id="L12">        HashMap&lt;String, HashMap&lt;Integer, HashMap&lt;String, Integer&gt;&gt;&gt; abilitiesPerTypeAndLevel = new HashMap&lt;&gt;();</span>
 
 <span class="fc" id="L14">        HashMap&lt;Integer, HashMap&lt;String, Integer&gt;&gt; adventurerMap = new HashMap&lt;&gt;();</span>
@@ -20,8 +20,8 @@ import java.util.Random;
 <span class="fc" id="L20">        adventurerMap.put(1, adventurerLevel1);</span>
 
 <span class="fc" id="L22">        HashMap&lt;String, Integer&gt; adventurerLevel2 = new HashMap&lt;&gt;();</span>
-<span class="fc" id="L23">        adventurerLevel1.put(&quot;INT&quot;, 2);</span>
-<span class="fc" id="L24">        adventurerLevel1.put(&quot;CHA&quot;, 3);</span>
+<span class="fc" id="L23">        adventurerLevel2.put(&quot;INT&quot;, 2);</span>
+<span class="fc" id="L24">        adventurerLevel2.put(&quot;CHA&quot;, 3);</span>
 <span class="fc" id="L25">        adventurerMap.put(2, adventurerLevel2);</span>
 
 <span class="fc" id="L27">        HashMap&lt;String, Integer&gt; adventurerLevel3 = new HashMap&lt;&gt;();</span>
@@ -38,7 +38,7 @@ import java.util.Random;
 <span class="fc" id="L38">        adventurerLevel5.put(&quot;DEF&quot;, 4);</span>
 <span class="fc" id="L39">        adventurerMap.put(5, adventurerLevel5);</span>
 
-<span class="fc" id="L41">        abilitiesPerTypeAndLevel.put(&quot;ADVENTURER&quot;, adventurerMap);</span>
+<span class="fc" id="L41">        abilitiesPerTypeAndLevel.put(AvatarType.ADVENTURER.name(), adventurerMap);</span>
 
 
 <span class="fc" id="L44">        HashMap&lt;Integer, HashMap&lt;String, Integer&gt;&gt; archerMap = new HashMap&lt;&gt;();</span>
@@ -66,7 +66,7 @@ import java.util.Random;
 <span class="fc" id="L66">        archerLevel5.put(&quot;ATK&quot;, 4);</span>
 <span class="fc" id="L67">        archerMap.put(5, archerLevel5);</span>
 
-<span class="fc" id="L69">        abilitiesPerTypeAndLevel.put(&quot;ARCHER&quot;, archerMap);</span>
+<span class="fc" id="L69">        abilitiesPerTypeAndLevel.put(AvatarType.ARCHER.name(), archerMap);</span>
 
 
 <span class="fc" id="L72">        HashMap&lt;Integer, HashMap&lt;String, Integer&gt;&gt; dwarf = new HashMap&lt;&gt;();</span>
@@ -93,7 +93,7 @@ import java.util.Random;
 <span class="fc" id="L93">        dwarfLevel5.put(&quot;CHA&quot;, 1);</span>
 <span class="fc" id="L94">        dwarf.put(5, dwarfLevel5);</span>
 
-<span class="fc" id="L96">        abilitiesPerTypeAndLevel.put(&quot;DWARF&quot;, dwarf);</span>
+<span class="fc" id="L96">        abilitiesPerTypeAndLevel.put(AvatarType.DWARF.name(), dwarf);</span>
 
 <span class="fc" id="L98">        return abilitiesPerTypeAndLevel;</span>
     }
@@ -175,7 +175,7 @@ import java.util.Random;
                 //+1 de base
 <span class="fc" id="L176">                player.currenthealthpoints += 1;</span>
                 //+1 supplÃ©mentaire avec Holy Elixir
-<span class="pc bpc" id="L178" title="1 of 4 branches missed.">                if (player.inventory != null &amp;&amp; player.inventory.contains(&quot;Holy Elixir&quot;)) {</span>
+<span class="fc bfc" id="L178" title="All 2 branches covered.">                if (player.inventory.contains(&quot;Holy Elixir&quot;)) {</span>
 <span class="fc" id="L179">                    player.currenthealthpoints += 1;</span>
                 }
                 break;
@@ -184,7 +184,7 @@ import java.util.Random;
                 //+1 de base
 <span class="fc" id="L185">                player.currenthealthpoints += 1;</span>
                 //Bonus avec Magic Bow 
-<span class="pc bpc" id="L187" title="1 of 4 branches missed.">                if (player.inventory != null &amp;&amp; player.inventory.contains(&quot;Magic Bow&quot;)) {</span>
+<span class="fc bfc" id="L187" title="All 2 branches covered.">                if (player.inventory.contains(&quot;Magic Bow&quot;)) {</span>
 <span class="fc" id="L188">                    player.currenthealthpoints += player.currenthealthpoints / 8 - 1;</span>
                 }
                 break;
@@ -199,9 +199,10 @@ import java.util.Random;
                 break;
 
             default:
+                //Aucun bonus/malus
                 break;
         }
-<span class="fc" id="L204">    }</span>
+<span class="fc" id="L205">    }</span>
 
 }
 

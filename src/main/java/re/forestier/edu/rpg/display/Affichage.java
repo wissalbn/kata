@@ -4,7 +4,7 @@ import re.forestier.edu.rpg.player;
 
 public class Affichage {
 
-    private static final String INDENT = "   ";
+    public static final String INDENT = "   ";
 
     public static String afficherJoueur(player player) {
         if (player == null) {

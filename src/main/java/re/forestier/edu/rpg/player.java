@@ -28,6 +28,8 @@ public class player {
     public HashMap<String, Integer> abilities;
     public ArrayList<String> inventory;
     private AvatarType avatarEnum;
+    public ArrayList<Item> itemsInventory = new ArrayList<>();
+    private double maxCarryWeight = 10.0;
 
     public player(String playerName, String avatar_name, String avatarClass, int money, ArrayList<String> inventory) {
         try {

@@ -17,7 +17,6 @@ public class GlobalTest {
         player player = new player("Florian", "Gnognak le Barbare", "ADVENTURER", 200, new ArrayList<>());
     
         // ACT (SETUP): On ajoute l'XP pour qu'il soit au Niveau 2 (10 <= XP < 27)
-        // Cela devrait aussi lui donner un objet et mettre à jour ses capacités.
         UpdatePlayer.addXp(player, 20); 
 
         // ACT: Génère la chaîne d'affichage
@@ -30,8 +29,5 @@ public class GlobalTest {
         assertTrue(resultat.contains("Niveau : 2 (XP totale : 20)"), "Le niveau et l'XP doivent être affichés correctement.");
         // 3. L'inventaire (qui doit maintenant contenir 1 objet aléatoire)
         assertTrue(resultat.contains("Inventaire :"), "La section Inventaire doit être présente.");
-        
-        // Note : Pour 100% de fiabilité, vous devriez vérifier que l'inventaire contient UN item, 
-        // car UpdatePlayer.addXp donne un item aléatoire s'il y a level-up.
     }
 }

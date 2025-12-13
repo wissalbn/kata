@@ -110,17 +110,22 @@ public class UpdatePlayer {
         goblinLevel2.put("ALC", 4);
         goblinMap.put(2, goblinLevel2);
 
+        // Niveau 3 : VIS = 1
         HashMap<String, Integer> goblinLevel3 = new HashMap<>();
-        goblinLevel3.put("ATK", 4);
+        goblinLevel3.put("VIS", 1);
         goblinMap.put(3, goblinLevel3);
 
+        // Niveau 4 : DEF = 1
         HashMap<String, Integer> goblinLevel4 = new HashMap<>();
-        goblinLevel4.put("DEF", 2);
+        goblinLevel4.put("DEF", 1);
         goblinMap.put(4, goblinLevel4);
 
+        // Niveau 5 : DEF = 2, ATK = 4
         HashMap<String, Integer> goblinLevel5 = new HashMap<>();
-        goblinLevel5.put("CHA", 1);
+        goblinLevel5.put("DEF", 2);
+        goblinLevel5.put("ATK", 4);
         goblinMap.put(5, goblinLevel5);
+
 
         abilitiesPerTypeAndLevel.put(AvatarType.GOBLIN.name(), goblinMap);
 

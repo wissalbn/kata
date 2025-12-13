@@ -337,5 +337,61 @@ public class UpdatePlayerTest {
         assertEquals(3, player.currenthealthpoints, 
             "Le DWARF doit recevoir +2 PV (1 -> 3) pour couvrir le chemin critique.");
     }
+
+    //tests pour nouvelles fonctionnalités
+
+    @Test
+    void goblin_level1_hasCorrectAbilities() {
+        player p = new player("G", "Gob", "GOBLIN", 100, new ArrayList<>());
+
+        assertEquals(2, p.abilities.get("INT"));
+        assertEquals(2, p.abilities.get("ATK"));
+        assertEquals(1, p.abilities.get("ALC"));
+    }
+
+    @Test
+    void goblin_level2_updatesAbilitiesCorrectly() {
+        player p = new player("G", "Gob", "GOBLIN", 100, new ArrayList<>());
+
+        UpdatePlayer.addXp(p, 10); // passage niveau 2
+
+        assertEquals(3, p.abilities.get("ATK"));
+        assertEquals(4, p.abilities.get("ALC"));
+    }
+
+    @Test
+    void goblin_level3_hasVision() {
+        player p = new player("G", "Gob", "GOBLIN", 100, new ArrayList<>());
+
+        UpdatePlayer.addXp(p, 27); // niveau 3
+
+        assertEquals(1, p.abilities.get("VIS"));
+    }
+
+    @Test
+    void goblin_level5_hasFinalStats() {
+        player p = new player("G", "Gob", "GOBLIN", 100, new ArrayList<>());
+
+        UpdatePlayer.addXp(p, 111); // niveau 5
+
+        assertEquals(2, p.abilities.get("DEF"));
+        assertEquals(4, p.abilities.get("ATK"));
+    }
+
+    @Test
+    void majFinDeTour_goblinShouldNotHeal_whenLowHp() {
+        //ARRANGE
+        player p = new player("G", "Gob", "GOBLIN", 100, new ArrayList<>());
+        p.healthpoints = 100;
+        p.currenthealthpoints = 20;
+
+        int hpBefore = p.currenthealthpoints;
+
+        //ACT
+        UpdatePlayer.majFinDeTour(p);
+
+        //ASSERT
+        assertEquals(hpBefore, p.currenthealthpoints,"Goblin should not heal during end of turn");
+    }
         
 }

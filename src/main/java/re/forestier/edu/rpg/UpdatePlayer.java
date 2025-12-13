@@ -95,6 +95,35 @@ public class UpdatePlayer {
 
         abilitiesPerTypeAndLevel.put(AvatarType.DWARF.name(), dwarf);
 
+        HashMap<Integer, HashMap<String, Integer>> goblinMap = new HashMap<>();
+
+        // Niveau 1 : INT = 2, ATK = 2, ALC = 1
+        HashMap<String, Integer> goblinLevel1 = new HashMap<>();
+        goblinLevel1.put("INT", 2);
+        goblinLevel1.put("ATK", 2);
+        goblinLevel1.put("ALC", 1);
+        goblinMap.put(1, goblinLevel1);
+
+        // Niveau 2 : ATK = 3, ALC = 4
+        HashMap<String, Integer> goblinLevel2 = new HashMap<>();
+        goblinLevel2.put("ATK", 3);
+        goblinLevel2.put("ALC", 4);
+        goblinMap.put(2, goblinLevel2);
+
+        HashMap<String, Integer> goblinLevel3 = new HashMap<>();
+        goblinLevel3.put("ATK", 4);
+        goblinMap.put(3, goblinLevel3);
+
+        HashMap<String, Integer> goblinLevel4 = new HashMap<>();
+        goblinLevel4.put("DEF", 2);
+        goblinMap.put(4, goblinLevel4);
+
+        HashMap<String, Integer> goblinLevel5 = new HashMap<>();
+        goblinLevel5.put("CHA", 1);
+        goblinMap.put(5, goblinLevel5);
+
+        abilitiesPerTypeAndLevel.put(AvatarType.GOBLIN.name(), goblinMap);
+
         return abilitiesPerTypeAndLevel;
     }
 

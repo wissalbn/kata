@@ -218,6 +218,10 @@ public class UpdatePlayer {
                 }
                 break;
 
+            case GOBLIN:
+                //Le Gobelin n'a pas de soin spécial spécifié donc on ne fait rien.
+                break;
+
             default:
                 //Aucun bonus/malus
                 break;

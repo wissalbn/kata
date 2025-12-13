@@ -1,5 +1,6 @@
 package re.forestier.edu;
 
+import re.forestier.edu.rpg.Item;
 import re.forestier.edu.rpg.player;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;

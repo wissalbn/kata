@@ -126,13 +126,13 @@ public class player {
     }
 
     public boolean sell(String itemName) {
-<span class="pc bpc" id="L129" title="2 of 4 branches missed.">        if (itemName == null || itemName.isBlank()) {</span>
-<span class="nc" id="L130">            return false;</span>
+<span class="fc bfc" id="L129" title="All 4 branches covered.">        if (itemName == null || itemName.isBlank()) {</span>
+<span class="fc" id="L130">            return false;</span>
         }
 
-<span class="pc bfc" id="L133" title="All 2 branches covered.">        for (int i = 0; i &lt; itemsInventory.size(); i++) {</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">        for (int i = 0; i &lt; itemsInventory.size(); i++) {</span>
 <span class="fc" id="L134">            Item item = itemsInventory.get(i);</span>
-<span class="pc bpc" id="L135" title="1 of 2 branches missed.">            if (itemName.equals(item.getName())) {</span>
+<span class="fc bfc" id="L135" title="All 2 branches covered.">            if (itemName.equals(item.getName())) {</span>
 <span class="fc" id="L136">                itemsInventory.remove(i);</span>
 <span class="fc" id="L137">                this.money += item.getValue();</span>
 <span class="fc" id="L138">                return true;</span>

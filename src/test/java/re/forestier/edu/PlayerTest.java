@@ -2,9 +2,11 @@ package re.forestier.edu;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import re.forestier.edu.rpg.Item;
 import re.forestier.edu.rpg.player;
 import java.util.ArrayList;
 
@@ -211,6 +213,41 @@ public class PlayerTest {
 
         assertTrue(level >= 7);
     }
+
+    @Test
+    void sell_shouldReturnFalse_whenNameIsNullOrBlank() {
+        player p = new player("T", "A", "ARCHER", 100, new ArrayList<>());
+
+        assertFalse(p.sell(null));
+        assertFalse(p.sell(""));
+        assertFalse(p.sell("   "));
+    }
+
+    @Test
+    void sell_shouldReturnFalse_whenItemNotFound() {
+        player p = new player("T", "A", "ARCHER", 100, new ArrayList<>());
+        p.addItem(new Item("Potion", "heal", 1.0, 10));
+
+        assertFalse(p.sell("NotExisting"));
+    }
+
+    @Test
+    void sell_shouldRemoveItem_andIncreaseMoney_whenItemExists() {
+        player p = new player("T", "A", "ARCHER", 100, new ArrayList<>());
+        Item sword = new Item("Sword", "basic sword", 2.0, 25);
+
+        p.addItem(sword);
+
+        int moneyBefore = p.money; // si money est public, sinon getter
+        boolean sold = p.sell("Sword");
+
+        assertTrue(sold);
+        assertEquals(moneyBefore + 25, p.money);
+
+        // vendre une deuxième fois doit échouer car l'objet est retiré
+        assertFalse(p.sell("Sword"));
+    }
+
 
 
 

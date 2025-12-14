@@ -3,6 +3,7 @@ package re.forestier.edu;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import re.forestier.edu.rpg.player;
 import java.util.ArrayList;
@@ -189,14 +190,35 @@ public class PlayerTest {
         
         //SETUP
         final int montantInitial = 50;
-        final int montantARetirer = 50; // Retirer tout l'argent disponible
+        final int montantARetirer = 50;
         
         //ACT
         player.removeMoney(montantARetirer); 
 
         //ASSERT
-        //conffirmer que le résultat est 0. 
         assertEquals(montantInitial - montantARetirer, player.money, "Le joueur doit pouvoir retirer son dernier montant, laissant 0. (Tue le mutant '<= 0').");
+    }
+
+    @Test
+    void retrieveLevel_shouldEnterWhileLoop_whenXpIsVeryHigh() {
+        player p = new player("Test", "Avatar", "ARCHER", 0, new ArrayList<>());
+
+        p.setXp(300);
+
+        int level = p.retrieveLevel();
+
+        assertTrue(level > 5);
+    }
+
+    @Test
+    void retrieveLevel_shouldIncreaseLevelMultipleTimes_whenXpIsHuge() {
+        player p = new player("Test", "Avatar", "ARCHER", 0, new ArrayList<>());
+
+        p.setXp(1000);
+
+        int level = p.retrieveLevel();
+
+        assertTrue(level >= 7);
     }
 
     

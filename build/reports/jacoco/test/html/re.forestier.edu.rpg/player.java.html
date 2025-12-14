@@ -78,10 +78,10 @@ public class player {
 <span class="fc" id="L78">        int previousThreshold = LEVEL_THRESHOLDS[LEVEL_THRESHOLDS.length - 1];</span>
 <span class="fc" id="L79">        int nextThreshold = level * 10 + ((level + 1) * previousThreshold) / 4;</span>
 
-<span class="pc bpc" id="L81" title="1 of 2 branches missed.">        while (xp &gt;= nextThreshold) {</span>
-<span class="nc" id="L82">            level++;</span>
-<span class="nc" id="L83">            previousThreshold = nextThreshold;</span>
-<span class="nc" id="L84">            nextThreshold = level * 10 + ((level + 1) * previousThreshold) / 4;</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        while (xp &gt;= nextThreshold) {</span>
+<span class="fc" id="L82">            level++;</span>
+<span class="fc" id="L83">            previousThreshold = nextThreshold;</span>
+<span class="fc" id="L84">            nextThreshold = level * 10 + ((level + 1) * previousThreshold) / 4;</span>
         }
 
 <span class="fc" id="L87">        return level;</span>

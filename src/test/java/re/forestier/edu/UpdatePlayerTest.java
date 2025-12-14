@@ -393,5 +393,51 @@ public class UpdatePlayerTest {
         //ASSERT
         assertEquals(hpBefore, p.currenthealthpoints,"Goblin should not heal during end of turn");
     }
+
+    @Test
+    void majFinDeTour_shouldPrintKoMessage_whenPlayerIsKo() {
+        player p = new player("T", "A", "ARCHER", 0, new ArrayList<>());
+        p.healthpoints = 100;
+        p.currenthealthpoints = 0; // KO
+
+        java.io.PrintStream originalOut = System.out;
+        java.io.ByteArrayOutputStream outContent = new java.io.ByteArrayOutputStream();
+        System.setOut(new java.io.PrintStream(outContent));
+
+        try {
+            UpdatePlayer.majFinDeTour(p);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        String printed = outContent.toString().replace("\r\n", "\n");
+        assertTrue(printed.contains("Le joueur est KO !"));
+    }
+
+    @Test
+    void majFinDeTour_shouldNotTriggerLowHealthLogic_whenExactlyHalf() {
+        player p = new player("T","A","ARCHER", 0, new ArrayList<>());
+        p.healthpoints = 100;
+        p.currenthealthpoints = 50; // == moitié
+
+        UpdatePlayer.majFinDeTour(p);
+
+        assertEquals(50, p.currenthealthpoints);
+    }
+    @Test
+    void majFinDeTour_shouldTriggerLowHealthLogic_whenBelowHalf() {
+        player p = new player("T","A","ARCHER", 0, new ArrayList<>());
+        p.healthpoints = 100;
+        p.currenthealthpoints = 49; // < 50
+
+        UpdatePlayer.majFinDeTour(p);
+
+        assertTrue(p.currenthealthpoints > 49);
+    }
+
+
+
+
+
         
 }

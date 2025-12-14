@@ -68,15 +68,23 @@ public class player {
         money += amount;
     }
     public int retrieveLevel() {
-        
-        //TODO : ajouter les prochains niveaux
-
         for (int i = 0; i < LEVEL_THRESHOLDS.length; i++) {
             if (xp < LEVEL_THRESHOLDS[i]) {
                 return i + 1;
             }
         }
-        return LEVEL_THRESHOLDS.length + 1; // Niveau 5
+
+        int level = LEVEL_THRESHOLDS.length + 1;
+        int previousThreshold = LEVEL_THRESHOLDS[LEVEL_THRESHOLDS.length - 1];
+        int nextThreshold = level * 10 + ((level + 1) * previousThreshold) / 4;
+
+        while (xp >= nextThreshold) {
+            level++;
+            previousThreshold = nextThreshold;
+            nextThreshold = level * 10 + ((level + 1) * previousThreshold) / 4;
+        }
+
+        return level;
     }
 
     public int getXp() {
@@ -86,5 +94,51 @@ public class player {
     public void setXp(int xp) {
     this.xp = xp;
     }
+
+    public void setMaxCarryWeight(double maxCarryWeight) {
+        if (maxCarryWeight < 0) {
+            throw new IllegalArgumentException("maxCarryWeight must be >= 0");
+        }
+        this.maxCarryWeight = maxCarryWeight;
+    }
+
+    public double getCurrentCarryWeight() {
+        double sum = 0.0;
+        for (Item i : itemsInventory) {
+            sum += i.getWeight();
+        }
+        return sum;
+    }
+
+    public boolean addItem(Item item) {
+        if (item == null) {
+            throw new IllegalArgumentException("Item must not be null");
+        }
+
+        double newWeight = getCurrentCarryWeight() + item.getWeight();
+        if (newWeight > maxCarryWeight) {
+            return false;
+        }
+
+        itemsInventory.add(item);
+        return true;
+    }
+
+    public boolean sell(String itemName) {
+        if (itemName == null || itemName.isBlank()) {
+            return false;
+        }
+
+        for (int i = 0; i < itemsInventory.size(); i++) {
+            Item item = itemsInventory.get(i);
+            if (itemName.equals(item.getName())) {
+                itemsInventory.remove(i);
+                this.money += item.getValue();
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }

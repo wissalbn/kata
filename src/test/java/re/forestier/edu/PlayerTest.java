@@ -260,6 +260,20 @@ public class PlayerTest {
         assertEquals("maxCarryWeight must be >= 0", ex.getMessage());
     }
 
+    @Test
+    void setMaxCarryWeight_shouldSetValue_whenNonNegative() throws Exception {
+        player p = new player("Test", "Avatar", "ARCHER", 0, new ArrayList<>());
+
+        p.setMaxCarryWeight(42.5);
+
+        var field = player.class.getDeclaredField("maxCarryWeight");
+        field.setAccessible(true);
+
+        double value = field.getDouble(p);
+        assertEquals(42.5, value, 1e-9);
+    }
+
+
 
 
 

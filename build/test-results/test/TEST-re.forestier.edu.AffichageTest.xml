@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="re.forestier.edu.AffichageTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2025-12-14T02:11:51" hostname="DESKTOP-5ILICN9" time="0.095">
+<testsuite name="re.forestier.edu.AffichageTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2025-12-14T02:13:44" hostname="DESKTOP-5ILICN9" time="0.073">
   <properties/>
-  <testcase name="afficherJoueur_shouldHandleNullAbilitiesAndNullInventory()" classname="re.forestier.edu.AffichageTest" time="0.079"/>
-  <testcase name="afficherJoueur_ShouldHandleEmptyAbilities()" classname="re.forestier.edu.AffichageTest" time="0.0"/>
-  <testcase name="forceClassLoadingCoverage()" classname="re.forestier.edu.AffichageTest" time="0.0"/>
-  <testcase name="afficherJoueur_shouldThrowWhenPlayerIsNull()" classname="re.forestier.edu.AffichageTest" time="0.005"/>
-  <testcase name="testAffichageIventaire()" classname="re.forestier.edu.AffichageTest" time="0.003"/>
-  <testcase name="pit_Affichage_KillsForEachMutant()" classname="re.forestier.edu.AffichageTest" time="0.003"/>
+  <testcase name="afficherJoueur_shouldHandleNullAbilitiesAndNullInventory()" classname="re.forestier.edu.AffichageTest" time="0.057"/>
+  <testcase name="afficherJoueur_ShouldHandleEmptyAbilities()" classname="re.forestier.edu.AffichageTest" time="0.001"/>
+  <testcase name="forceClassLoadingCoverage()" classname="re.forestier.edu.AffichageTest" time="0.001"/>
+  <testcase name="afficherJoueur_shouldThrowWhenPlayerIsNull()" classname="re.forestier.edu.AffichageTest" time="0.008"/>
+  <testcase name="testAffichageIventaire()" classname="re.forestier.edu.AffichageTest" time="0.001"/>
+  <testcase name="pit_Affichage_KillsForEachMutant()" classname="re.forestier.edu.AffichageTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

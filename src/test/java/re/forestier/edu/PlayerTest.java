@@ -248,6 +248,19 @@ public class PlayerTest {
         assertFalse(p.sell("Sword"));
     }
 
+    @Test
+    void setMaxCarryWeight_shouldThrowException_whenNegative() {
+        player p = new player("Test", "Avatar", "ARCHER", 0, new ArrayList<>());
+
+        IllegalArgumentException ex = assertThrows(
+                IllegalArgumentException.class,
+                () -> p.setMaxCarryWeight(-1.0)
+        );
+
+        assertEquals("maxCarryWeight must be >= 0", ex.getMessage());
+    }
+
+
 
 
 

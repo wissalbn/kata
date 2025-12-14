@@ -67,6 +67,7 @@ public class player {
     public void addMoney(int amount) {
         money += amount;
     }
+    
     public int retrieveLevel() {
         for (int i = 0; i < LEVEL_THRESHOLDS.length; i++) {
             if (xp < LEVEL_THRESHOLDS[i]) {
@@ -92,7 +93,7 @@ public class player {
     }
 
     public void setXp(int xp) {
-    this.xp = xp;
+        this.xp = xp;
     }
 
     public void setMaxCarryWeight(double maxCarryWeight) {

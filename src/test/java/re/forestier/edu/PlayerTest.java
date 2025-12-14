@@ -238,7 +238,7 @@ public class PlayerTest {
 
         p.addItem(sword);
 
-        int moneyBefore = p.money; // si money est public, sinon getter
+        int moneyBefore = p.money;
         boolean sold = p.sell("Sword");
 
         assertTrue(sold);

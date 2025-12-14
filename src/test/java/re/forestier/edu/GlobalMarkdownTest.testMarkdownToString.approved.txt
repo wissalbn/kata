@@ -1,0 +1,13 @@
+# Joueur Avatar joué par Wissal
+
+## Niveau
+* Niveau : 3
+* XP totale : 27
+
+## Capacités
+* ATK : 3
+* DEF : 1
+
+## Inventaire
+* Holy Elixir
+* Magic Bow

@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="re.forestier.edu.UpdatePlayerTest" tests="24" skipped="0" failures="0" errors="0" timestamp="2025-12-14T00:11:42" hostname="DESKTOP-5ILICN9" time="0.07">
+<testsuite name="re.forestier.edu.UpdatePlayerTest" tests="24" skipped="0" failures="0" errors="0" timestamp="2025-12-14T00:19:18" hostname="DESKTOP-5ILICN9" time="0.05">
   <properties/>
   <testcase name="pit_majFinDeTour_AdventurerLevel3KillsMutant()" classname="re.forestier.edu.UpdatePlayerTest" time="0.003"/>
-  <testcase name="majFinDeTour_HealingForDwarfBeLowHalfHp()" classname="re.forestier.edu.UpdatePlayerTest" time="0.001"/>
-  <testcase name="majFinDeTour_FinalCapCheck_DwarfOverflowsHP()" classname="re.forestier.edu.UpdatePlayerTest" time="0.001"/>
-  <testcase name="addXp_shouldLevelUpWhenXpIsSufficient()" classname="re.forestier.edu.UpdatePlayerTest" time="0.001"/>
-  <testcase name="majFinDeTour_HealingForArcherBeLowHalfHpMagicBow()" classname="re.forestier.edu.UpdatePlayerTest" time="0.001"/>
+  <testcase name="majFinDeTour_HealingForDwarfBeLowHalfHp()" classname="re.forestier.edu.UpdatePlayerTest" time="0.0"/>
+  <testcase name="majFinDeTour_FinalCapCheck_DwarfOverflowsHP()" classname="re.forestier.edu.UpdatePlayerTest" time="0.0"/>
+  <testcase name="addXp_shouldLevelUpWhenXpIsSufficient()" classname="re.forestier.edu.UpdatePlayerTest" time="0.0"/>
+  <testcase name="majFinDeTour_HealingForArcherBeLowHalfHpMagicBow()" classname="re.forestier.edu.UpdatePlayerTest" time="0.002"/>
   <testcase name="goblin_level3_hasVision()" classname="re.forestier.edu.UpdatePlayerTest" time="0.001"/>
-  <testcase name="majFinDeTour_ShouldThrowExceptionForNullPlayer()" classname="re.forestier.edu.UpdatePlayerTest" time="0.002"/>
-  <testcase name="majFinDeTour_DwarfHealingInCriticalZone()" classname="re.forestier.edu.UpdatePlayerTest" time="0.002"/>
-  <testcase name="majFinDeTour_HealingWhenHpAboveHalf()" classname="re.forestier.edu.UpdatePlayerTest" time="0.002"/>
+  <testcase name="majFinDeTour_ShouldThrowExceptionForNullPlayer()" classname="re.forestier.edu.UpdatePlayerTest" time="0.001"/>
+  <testcase name="majFinDeTour_DwarfHealingInCriticalZone()" classname="re.forestier.edu.UpdatePlayerTest" time="0.004"/>
+  <testcase name="majFinDeTour_HealingWhenHpAboveHalf()" classname="re.forestier.edu.UpdatePlayerTest" time="0.001"/>
   <testcase name="majFinDeTour_HealingForArcherBeLowHalfHp()" classname="re.forestier.edu.UpdatePlayerTest" time="0.001"/>
   <testcase name="forceClassLoadingCoverage()" classname="re.forestier.edu.UpdatePlayerTest" time="0.001"/>
-  <testcase name="majFinDeTour_shouldDoNothingWhenPlayerIsKO()" classname="re.forestier.edu.UpdatePlayerTest" time="0.01"/>
+  <testcase name="majFinDeTour_shouldDoNothingWhenPlayerIsKO()" classname="re.forestier.edu.UpdatePlayerTest" time="0.002"/>
   <testcase name="addXp_shouldntLevelUpWhenXpIsInsufficient()" classname="re.forestier.edu.UpdatePlayerTest" time="0.001"/>
   <testcase name="majFinDeTour_HealingWhenHpAtMax()" classname="re.forestier.edu.UpdatePlayerTest" time="0.001"/>
-  <testcase name="majFinDeTour_HealingForAdventurerBeLowHalfHpForLevel3OrHigher()" classname="re.forestier.edu.UpdatePlayerTest" time="0.002"/>
+  <testcase name="majFinDeTour_HealingForAdventurerBeLowHalfHpForLevel3OrHigher()" classname="re.forestier.edu.UpdatePlayerTest" time="0.0"/>
   <testcase name="majFinDeTour_HealingForDwarfBeLowHalfHpHolyElixir()" classname="re.forestier.edu.UpdatePlayerTest" time="0.001"/>
-  <testcase name="pit_addXp_addInventoryKillMutant()" classname="re.forestier.edu.UpdatePlayerTest" time="0.001"/>
-  <testcase name="goblin_level5_hasFinalStats()" classname="re.forestier.edu.UpdatePlayerTest" time="0.001"/>
+  <testcase name="pit_addXp_addInventoryKillMutant()" classname="re.forestier.edu.UpdatePlayerTest" time="0.0"/>
+  <testcase name="goblin_level5_hasFinalStats()" classname="re.forestier.edu.UpdatePlayerTest" time="0.0"/>
   <testcase name="majFinDeTour_HealingShouldNotExceedMaxHp()" classname="re.forestier.edu.UpdatePlayerTest" time="0.001"/>
-  <testcase name="goblin_level1_hasCorrectAbilities()" classname="re.forestier.edu.UpdatePlayerTest" time="0.005"/>
-  <testcase name="addXp_ShouldThrowExceptionForNullPlayer()" classname="re.forestier.edu.UpdatePlayerTest" time="0.001"/>
-  <testcase name="majFinDeTour_goblinShouldNotHeal_whenLowHp()" classname="re.forestier.edu.UpdatePlayerTest" time="0.001"/>
-  <testcase name="goblin_level2_updatesAbilitiesCorrectly()" classname="re.forestier.edu.UpdatePlayerTest" time="0.001"/>
+  <testcase name="goblin_level1_hasCorrectAbilities()" classname="re.forestier.edu.UpdatePlayerTest" time="0.001"/>
+  <testcase name="addXp_ShouldThrowExceptionForNullPlayer()" classname="re.forestier.edu.UpdatePlayerTest" time="0.002"/>
+  <testcase name="majFinDeTour_goblinShouldNotHeal_whenLowHp()" classname="re.forestier.edu.UpdatePlayerTest" time="0.0"/>
+  <testcase name="goblin_level2_updatesAbilitiesCorrectly()" classname="re.forestier.edu.UpdatePlayerTest" time="0.0"/>
   <testcase name="majFinDeTour_HealingForAdventurerBeLowHalfHpForLevelLowerThan3()" classname="re.forestier.edu.UpdatePlayerTest" time="0.001"/>
   <system-out><![CDATA[Le joueur est KO !
 ]]></system-out>

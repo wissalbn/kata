@@ -1,7 +1,9 @@
 package re.forestier.edu;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -113,6 +115,39 @@ public class ItemTest {
         assertTrue(item.equals(item), "Un objet doit être égal à lui-même (même référence).");
     }
     
+    //tuer les muatants
+    @Test
+    void constructor_shouldThrow_whenWeightIsNegative() {
+        IllegalArgumentException ex = assertThrows(
+                IllegalArgumentException.class,
+                () -> new Item("Potion", "heal", -0.01, 10)
+        );
+        assertEquals("Item weight must be >= 0", ex.getMessage());
+    }
+
+    @Test
+    void constructor_shouldThrow_whenValueIsNegative() {
+        IllegalArgumentException ex = assertThrows(
+                IllegalArgumentException.class,
+                () -> new Item("Potion", "heal", 1.0, -1)
+        );
+        assertEquals("Item value must be >= 0", ex.getMessage());
+    }
+
+    @Test
+    void constructor_shouldAcceptZeroWeightAndZeroValue() {
+        assertDoesNotThrow(() -> new Item("Free", "ok", 0.0, 0));
+    }
+
+    @Test
+    void hashCode_shouldDependOnName() {
+        Item item1 = new Item("Sword", "desc", 1.0, 10);
+        Item item2 = new Item("Shield", "desc", 1.0, 10);
+
+        assertNotEquals(item1.hashCode(), item2.hashCode());
+    }
+
+
 
     
 }

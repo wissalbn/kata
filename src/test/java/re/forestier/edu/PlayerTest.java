@@ -1,6 +1,8 @@
 package re.forestier.edu;
 
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -280,6 +282,66 @@ public class PlayerTest {
         double value = field.getDouble(p);
         assertEquals(42.5, value, 1e-9);
     }
+
+    //tuer les mutations
+    @Test
+    void retrieveLevel_shouldIncreaseBeyond5_whenXpReaches216() {
+        player p = new player("T","A","ARCHER", 0, new ArrayList<>());
+        p.setXp(216);
+
+        int level = p.retrieveLevel();
+
+        assertEquals(6, level);
+    }
+
+    @Test
+    void retrieveLevel_shouldStay5_whenXpIs215() {
+        player p = new player("T", "A", "ARCHER", 0, new ArrayList<>());
+        p.setXp(215);
+        assertEquals(5, p.retrieveLevel());
+    }
+
+    @Test
+    void retrieveLevel_shouldBecome6_whenXpIs216() {
+        player p = new player("T", "A", "ARCHER", 0, new ArrayList<>());
+        p.setXp(216);
+        assertEquals(6, p.retrieveLevel());
+    }
+
+    @Test
+    void retrieveLevel_shouldStay6_whenXpIs437() {
+        player p = new player("T", "A", "ARCHER", 0, new ArrayList<>());
+        p.setXp(437);
+        assertEquals(6, p.retrieveLevel());
+    }
+
+    @Test
+    void retrieveLevel_shouldBecome7_whenXpIs438() {
+        player p = new player("T", "A", "ARCHER", 0, new ArrayList<>());
+        p.setXp(438);
+        assertEquals(7, p.retrieveLevel());
+    }
+
+    @Test
+    void setMaxCarryWeight_shouldNotThrow_whenZero() {
+        player p = new player("T","A","ARCHER", 0, new ArrayList<>());
+
+        assertDoesNotThrow(() -> p.setMaxCarryWeight(0.0));
+    }
+
+    @Test
+    void addItem_shouldSucceed_whenNewWeightEqualsMaxCarryWeight() {
+        player p = new player("T", "A", "ARCHER", 0, new ArrayList<>());
+        p.setMaxCarryWeight(5.0);
+
+        // poids pile égal à max
+        Item item = new Item("Rock", "heavy", 5.0, 1);
+
+        assertTrue(p.addItem(item));
+    }
+
+
+
 
     
 

@@ -19,18 +19,21 @@ public class GlobalMarkdownApprovalTest {
     void testToStringMarkdown() throws IOException {
         // ARRANGE
         player player = new player("Florian", "Gnognak le Barbare", "ADVENTURER", 200, new ArrayList<>());
-        UpdatePlayer.addXp(player, 20); // niveau 2
+        UpdatePlayer.addXp(player, 20);
 
         // ACT
         String actual = AffichageMarkdown.afficherJoueurMarkdown(player);
 
         // ASSERT
-        assertApproved("GlobalMarkdownTest.testMarkdownToString.approved", actual);
+        assertApproved("GlobalMarkdownTest.testMarkdownToString",actual);
     }
 
-    private static void assertApproved(String name, String actual) throws IOException {
-        Path approved = Path.of("src", "test", "resources", name + ".approved.txt");
-        Path received = Path.of("src", "test", "resources", name + ".received.txt");
+    private static void assertApproved(String baseName, String actual) throws IOException {
+        Path dir = Path.of("src", "test", "resources", "re", "forestier", "edu");
+        Path approved = dir.resolve(baseName + ".approved.txt");
+        Path received = dir.resolve(baseName + ".received.txt");
+
+        Files.createDirectories(dir);
 
         if (!Files.exists(approved)) {
             Files.writeString(received, actual, StandardCharsets.UTF_8);
@@ -38,11 +41,20 @@ public class GlobalMarkdownApprovalTest {
         }
 
         String expected = Files.readString(approved, StandardCharsets.UTF_8);
-        if (!expected.equals(actual)) {
+
+        // Normalisation \r\n (Windows) -> \n (Unix)
+        String normExpected = expected.replace("\r\n", "\n");
+        String normActual   = actual.replace("\r\n", "\n");
+
+        if (!normExpected.equals(normActual)) {
             Files.writeString(received, actual, StandardCharsets.UTF_8);
             fail("Output differs. See: " + received);
         } else {
             if (Files.exists(received)) Files.delete(received);
         }
     }
+
+
+
+
 }
